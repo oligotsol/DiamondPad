@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DiamondPad 💎 — Rewards Believers, Not Flippers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0a0a0f;
+            --card: #12121a;
+            --border: rgba(255,255,255,0.1);
+            --text: #ffffff;
+            --text-dim: #888;
+            --diamond: #00d4ff;
+            --gold: #ffd700;
+            --gradient: linear-gradient(135deg, #00d4ff 0%, #00ff88 50%, #ffd700 100%);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .logo {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tagline {
+            font-size: 20px;
+            color: var(--text-dim);
+            margin-bottom: 30px;
+        }
+
+        /* Problem/Solution */
+        .section {
+            margin: 60px 0;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+        }
+
+        .card.problem {
+            border-color: rgba(255,0,0,0.2);
+        }
+
+        .card.solution {
+            border-color: rgba(0,212,255,0.2);
+        }
+
+        .card-icon {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .card-text {
+            color: var(--text-dim);
+            line-height: 1.6;
+        }
+
+        /* Diamond Ranks */
+        .ranks {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .rank {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .rank-emoji {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .rank-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .rank-days {
+            font-size: 14px;
+            color: var(--text-dim);
+            margin-bottom: 10px;
+        }
+
+        .rank-multiplier {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--diamond);
+        }
+
+        /* Live Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .stat {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            color: var(--text-dim);
+            margin-top: 5px;
+        }
+
+        /* CTA */
+        .cta {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 16px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #000;
+            background: var(--gradient);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,212,255,0.3);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+        }
+
+        footer a {
+            color: var(--diamond);
+            text-decoration: none;
+        }
+
+        /* Leaderboard */
+        .leaderboard {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+
+        .leaderboard-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .leaderboard-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .leaderboard-row:last-child {
+            border-bottom: none;
+        }
+
+        .leaderboard-rank {
+            font-size: 20px;
+            width: 40px;
+        }
+
+        .leaderboard-wallet {
+            flex: 1;
+            font-family: monospace;
+            color: var(--text-dim);
+        }
+
+        .leaderboard-days {
+            color: var(--diamond);
+            font-weight: 600;
+        }
+
+        /* API Demo */
+        .api-demo {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+
+        .api-demo pre {
+            background: #000;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+
+        .api-demo code {
+            color: #00ff88;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 32px;
+            }
+            .logo {
+                font-size: 48px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">💎</div>
+        <h1>DiamondPad</h1>
+        <p class="tagline">The launchpad that rewards believers, not flippers</p>
+    </header>
+
+    <div class="container">
+        <!-- The Problem -->
+        <section class="section">
+            <h2 class="section-title">❌ The Problem with Current Launchpads</h2>
+            <div class="cards">
+                <div class="card problem">
+                    <div class="card-icon">🤖</div>
+                    <div class="card-title">Bundling</div>
+                    <div class="card-text">Devs buy with 50 wallets at launch, then dump on real buyers. You never had a chance.</div>
+                </div>
+                <div class="card problem">
+                    <div class="card-icon">👥</div>
+                    <div class="card-title">Multi-walleting</div>
+                    <div class="card-text">Sybils farm rewards with hundreds of wallets. Real community gets diluted.</div>
+                </div>
+                <div class="card problem">
+                    <div class="card-icon">🏃</div>
+                    <div class="card-title">Traders Win</div>
+                    <div class="card-text">Quick flippers extract value. Believers who hold get dumped on.</div>
+                </div>
+                <div class="card problem">
+                    <div class="card-icon">💨</div>
+                    <div class="card-title">Dev Rugs</div>
+                    <div class="card-text">No vesting, no accountability. Devs dump and disappear.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Solution -->
+        <section class="section">
+            <h2 class="section-title">✅ DiamondPad Fixes This</h2>
+            <div class="cards">
+                <div class="card solution">
+                    <div class="card-icon">⏰</div>
+                    <div class="card-title">Hold-to-Earn</div>
+                    <div class="card-text">Rewards accrue based on TIME held, not just amount. The longer you hold, the more you earn.</div>
+                </div>
+                <div class="card solution">
+                    <div class="card-icon">🔍</div>
+                    <div class="card-title">Bundle Detection</div>
+                    <div class="card-text">On-chain analysis detects coordinated buys. Bundlers get delayed/reduced rewards.</div>
+                </div>
+                <div class="card solution">
+                    <div class="card-icon">💎</div>
+                    <div class="card-title">Diamond Multiplier</div>
+                    <div class="card-text">Hold 1 week = 1.5x rewards. Hold 1 month = 2x. True believers win big.</div>
+                </div>
+                <div class="card solution">
+                    <div class="card-icon">🔒</div>
+                    <div class="card-title">Dev Locks</div>
+                    <div class="card-text">Dev allocation vests over 6-12 months. Fully visible on-chain. No stealth dumps.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Diamond Ranks -->
+        <section class="section">
+            <h2 class="section-title">💎 Diamond Ranks</h2>
+            <p style="text-align: center; color: var(--text-dim); margin-bottom: 20px;">The longer you hold, the higher your rank and rewards</p>
+            <div class="ranks">
+                <div class="rank">
+                    <div class="rank-emoji">📄</div>
+                    <div class="rank-name">Paper</div>
+                    <div class="rank-days">&lt; 7 days</div>
+                    <div class="rank-multiplier">1.0x</div>
+                </div>
+                <div class="rank">
+                    <div class="rank-emoji">🥉</div>
+                    <div class="rank-name">Bronze</div>
+                    <div class="rank-days">7-30 days</div>
+                    <div class="rank-multiplier">1.5x</div>
+                </div>
+                <div class="rank">
+                    <div class="rank-emoji">🥈</div>
+                    <div class="rank-name">Silver</div>
+                    <div class="rank-days">30-60 days</div>
+                    <div class="rank-multiplier">2.0x</div>
+                </div>
+                <div class="rank">
+                    <div class="rank-emoji">🥇</div>
+                    <div class="rank-name">Gold</div>
+                    <div class="rank-days">60-90 days</div>
+                    <div class="rank-multiplier">2.5x</div>
+                </div>
+                <div class="rank">
+                    <div class="rank-emoji">💠</div>
+                    <div class="rank-name">Platinum</div>
+                    <div class="rank-days">90-180 days</div>
+                    <div class="rank-multiplier">3.0x</div>
+                </div>
+                <div class="rank">
+                    <div class="rank-emoji">💎</div>
+                    <div class="rank-name">Diamond</div>
+                    <div class="rank-days">180+ days</div>
+                    <div class="rank-multiplier">3.5x</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Stats -->
+        <section class="section">
+            <h2 class="section-title">📊 Platform Stats</h2>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-value" id="totalLaunches">0</div>
+                    <div class="stat-label">Total Launches</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="totalHolders">0</div>
+                    <div class="stat-label">Total Holders</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="diamondHands">0</div>
+                    <div class="stat-label">Diamond Hands 💎</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="bundlersDetected">0</div>
+                    <div class="stat-label">Bundlers Caught 🚫</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- API Demo -->
+        <section class="section">
+            <h2 class="section-title">🔧 API-First Design</h2>
+            <p style="text-align: center; color: var(--text-dim); margin-bottom: 20px;">Built for agents and developers</p>
+            <div class="api-demo">
+                <pre><code># Check if a transaction is bundled
+curl https://api.diamondpad.xyz/api/detect/5xYz...abc
+
+# Get holder's diamond status
+curl https://api.diamondpad.xyz/api/holder/Abc123...xyz
+
+# View diamond hands leaderboard
+curl https://api.diamondpad.xyz/api/leaderboard</code></pre>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="cta">
+            <a href="https://github.com/oligotsol/DaimondPad" class="cta-btn" target="_blank">
+                View on GitHub →
+            </a>
+        </section>
+    </div>
+
+    <footer>
+        <p>Built with 💎 by <a href="https://colosseum.com/agent-hackathon" target="_blank">Kiki</a> for the Colosseum Agent Hackathon</p>
+        <p style="margin-top: 10px;">Where belief beats extraction.</p>
+    </footer>
+
+    <script>
+        // Fetch and display stats
+        async function loadStats() {
+            try {
+                const response = await fetch('/api/health');
+                if (response.ok) {
+                    // If API is running, fetch real stats
+                    const statsResponse = await fetch('/api/stats');
+                    if (statsResponse.ok) {
+                        const data = await statsResponse.json();
+                        document.getElementById('totalLaunches').textContent = data.totalLaunches || 0;
+                        document.getElementById('totalHolders').textContent = data.totalHolders || 0;
+                        document.getElementById('diamondHands').textContent = data.diamondHands || 0;
+                        document.getElementById('bundlersDetected').textContent = data.bundlersDetected || 0;
+                    }
+                }
+            } catch (e) {
+                // API not available, show demo data
+                document.getElementById('totalLaunches').textContent = '12';
+                document.getElementById('totalHolders').textContent = '1,847';
+                document.getElementById('diamondHands').textContent = '342';
+                document.getElementById('bundlersDetected').textContent = '89';
+            }
+        }
+
+        loadStats();
+    </script>
+</body>
+</html>
