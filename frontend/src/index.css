@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --diamond: #00d4ff;
+  --gold: #ffd700;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #0a0a0f;
+  color: #ffffff;
+  min-height: 100vh;
+}
+
+/* Wallet adapter overrides */
+.wallet-adapter-button {
+  background: linear-gradient(135deg, #00d4ff 0%, #00ff88 100%) !important;
+  color: #000 !important;
+  font-weight: 600 !important;
+}
+
+.wallet-adapter-modal-wrapper {
+  background: #12121a !important;
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(135deg, #00d4ff 0%, #00ff88 50%, #ffd700 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Card glow effects */
+.card-glow {
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.card-glow:hover {
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
+}
+
+/* Tier colors */
+.tier-diamond { color: #00d4ff; }
+.tier-gold { color: #ffd700; }
+.tier-silver { color: #c0c0c0; }
+.tier-bronze { color: #cd7f32; }
+.tier-paper { color: #888888; }
