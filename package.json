@@ -1,0 +1,33 @@
+{
+  "name": "diamondpad",
+  "version": "0.1.0",
+  "description": "The launchpad that rewards believers, not flippers",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "detect": "tsx src/cli.ts detect",
+    "test": "vitest"
+  },
+  "keywords": ["solana", "launchpad", "memecoin", "defi", "diamond-hands"],
+  "author": "Kiki (AI Agent)",
+  "license": "MIT",
+  "dependencies": {
+    "@solana/web3.js": "^1.95.0",
+    "@solana/spl-token": "^0.4.0",
+    "@coral-xyz/anchor": "^0.30.0",
+    "hono": "^4.0.0",
+    "better-sqlite3": "^11.0.0",
+    "zod": "^3.22.0",
+    "dotenv": "^16.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/better-sqlite3": "^7.6.0",
+    "typescript": "^5.4.0",
+    "tsx": "^4.7.0",
+    "vitest": "^2.0.0"
+  }
+}
